@@ -3,12 +3,12 @@
 
 using namespace std;
 
-float area(float, float);
+float area(float, float); //Prototyping function
 
 int main(){
 
     // Declare Variables
-    float b, h, b1, b2, r1, r2, a1, a2, total;
+    float b, h, b1, b2, r1, r2, a1, a2, total; 
 
     // Initialise Variables
     b = 0.0;
@@ -51,16 +51,16 @@ float area(float base, float height){
 
     // Initialising Variables:
     q = 0.0;
-    dy = 0.0001;
-    dx  = (base/height)*dy;
-    total_y_steps = height/dy;
+    dy = 0.0001; // Y-axis step
+    dx  = (base/height)*dy; //X-axis Step
+    total_y_steps = height/dy; // No. of steps on y-axis
     interior_area = 0.0;
     boundary_area = 0.0;
     A = 0.0;
 
     // Loop to sum areas of discrete elements:
     for (int i = 1; i <= total_y_steps; i++) {
-        q = static_cast<float>(i);
+        q = static_cast<float>(i); 
         interior_area += dy*(base - q*dx);
         boundary_area += 0.5*(dy*dx);
     }
