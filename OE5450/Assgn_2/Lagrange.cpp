@@ -5,7 +5,7 @@ using namespace std;
 
 // Function Prototypes:
 void input_parser();
-double LaGrange(double);
+double Lagrange(double);
 
 // Global Variables:
 double X[21], Y[21];
@@ -13,7 +13,7 @@ double X[21], Y[21];
 int main(){
 
     // Declare Variables
-    double x, ans[61][2]; 
+    double x, ans[41][2]; 
 
     //Initialise Variable
     x = 0; 
@@ -22,20 +22,19 @@ int main(){
     input_parser(); 
 
     // Calculating Interpolating Points:
-    for (int i = 0; i < 61; i++){
+    for (int i = 0; i < 41; i++){
 
-        if(i % 3 != 0){
-        x = static_cast<float>(i);
-        x = x/3;
+        if(i % 2 != 0){
 
+        x = (i/2) + (1.0/3.0);   
         ans[i][0] = x;
-        ans[i][1] = LaGrange(x);
+        ans[i][1] = Lagrange(x);
         }
 
         else{
             
-            ans[i][0] = X[static_cast<int>(i/3)];
-            ans[i][1] = Y[static_cast<int>(i/3)];
+            ans[i][0] = X[static_cast<int>(i/2)];
+            ans[i][1] = Y[static_cast<int>(i/2)];
         }
 
     }
@@ -76,7 +75,7 @@ void input_parser(){
     
 }
 
-double LaGrange(double x){
+double Lagrange(double x){
 
     double result, coefficient;
     result = 0.00;
