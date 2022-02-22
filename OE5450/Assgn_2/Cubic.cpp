@@ -15,7 +15,7 @@ double X[21], Y[21], dd_y[21];
 int main(){
 
     // Declaring Variables:
-    double ans[61][2], x;
+    double ans[41][2], x;
 
     // Initialising Variables:
     x = 0;
@@ -33,25 +33,23 @@ int main(){
     // Piece-wise Cubic Interpolation:
     for (int i = 0; i < 20; i++){
 
-        ans[3*i][0] = X[i];
-        ans[3*i][1] = Y[i];
+        ans[2*i][0] = X[i];
+        ans[2*i][1] = Y[i];
 
-        ans[3*i + 1][0] = X[i] + 1.0/3.0;
-        ans[3*i + 1][1] = cubic_interp((i + 1.0/3.0), i);
+        ans[2*i + 1][0] = X[i] + 1.0/3.0;
+        ans[2*i + 1][1] = cubic_interp((i + 1.0/3.0), i);
 
-        ans[3*i + 2][0] = X[i] + 2.0/3.0;
-        ans[3*i + 2][1] = cubic_interp((i + 2.0/3.0), i);
     }
 
-    ans[60][0] = X[20];
-    ans[60][1] = Y[20]; 
+    ans[40][0] = X[20];
+    ans[40][1] = Y[20]; 
 
 
     // Writing Output to File:
     ofstream oStream;
     oStream.open("Cubic_output.txt");
 
-    for (int i = 0;  i < 61; i++)
+    for (int i = 0;  i < 41; i++)
     {
         oStream << ans[i][0] << " " << ans[i][1] << endl;
 
