@@ -85,19 +85,19 @@ int main(){
         // Right Boundary:
         for (int j = 1; j < m; j++){
 
-            T_k1[m-1][j] = (0.25)*(2.0*T_x + T_k1[m-1][j] + T_k1[m-2][j] + T_k1[m-1][j+1] + T_k1[m-1][j-1] - Q[m-1][j]*(delta*delta));
+            T_k1[m-1][j] = (0.25)*(2.0*(T_x*delta) + T_k1[m-1][j] + T_k1[m-2][j] + T_k1[m-1][j+1] + T_k1[m-1][j-1] - Q[m-1][j]*(delta*delta));
 
         }
 
         // Top Boundary:
         for (int i = 1; i < m; i++){
 
-            T_k1[i][m-1] = (0.25)*(2.0*T_y + T_k1[i][m-2] + T_k1[i+1][m-1] + T_k1[i-1][m-1] + T_k1[i][m-2] - Q[i][m-1]*(delta*delta));
+            T_k1[i][m-1] = (0.25)*(2.0*(T_y*delta) + T_k1[i][m-2] + T_k1[i+1][m-1] + T_k1[i-1][m-1] + T_k1[i][m-2] - Q[i][m-1]*(delta*delta));
 
         }
 
         // Top-Right Corner Element:
-        T_k1[m-1][m-1] = (0.25)*(T_k1[m-2][m-1] + T_k1[m-1][m-2] + 2.0*T_x + T_k1[m-2][m-1] + 2.0*T_y + T_k1[m-1][m-2] - Q[m-1][m-1]*(delta*delta));
+        T_k1[m-1][m-1] = (0.25)*(T_k1[m-2][m-1] + T_k1[m-1][m-2] + 2.0*(T_x*delta) + T_k1[m-2][m-1] + 2.0*(T_y*delta) + T_k1[m-1][m-2] - Q[m-1][m-1]*(delta*delta));
 
         // Error:
         for (int i = 1;  i < m; i++)
