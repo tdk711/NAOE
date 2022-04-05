@@ -58,6 +58,8 @@ int main(){
     do
     {
         coi++;
+        sum = 0;
+        
         for (int i = 0;  i < m; i++)
         {
             for (int j = 0; j < m; j++){
@@ -104,7 +106,7 @@ int main(){
         {
             for (int j = 1; j < m; j++){
 
-                sum = pow((T_k1[i][j] - T_k[i][j]),2);
+                sum += pow((T_k1[i][j] - T_k[i][j]),2);
 
             }
 
