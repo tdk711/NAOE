@@ -138,9 +138,9 @@ int main(){
        zStream << z_conv << endl;
 
         // Assign t+1 to t:
-        for (int i = 1;  i < 100; i++)
+        for (int i = 0;  i < 101; i++)
         {
-            for (int j = 1; j < 100; j++){
+            for (int j = 0; j < 101; j++){
                 zeta[i][j] = zetat[i][j];
                 psi[i][j] = psit[i][j];
                 psi0[i][j] = psit[i][j];
@@ -172,19 +172,19 @@ int main(){
         p[i+1][0] = (1/(Re))*(3.0*zeta[i][0] - 4.0*zeta[i][1] + zeta[i][2]) + p[i-1][0]; // Bottom
     }
 
-    p[0][1] = (1/(2.0*Re))*(3.0*zeta[0][1] - 4.0*zeta[1][1] + zeta[2][1]) + p[0][100];
-    for(int i = 1; i < 100; i++){
-        p[0][i+1] = (1/(Re))*(3.0*zeta[0][i] - 4.0*zeta[1][i] + zeta[2][i]) + p[0][i-1]; // Left
-    }
-
     p[100][1] = (1/(2.0*Re))*(3.0*zeta[100][1] - 4.0*zeta[99][1] + zeta[98][1]) + p[100][0];
     for(int i = 1; i < 100; i++){
         p[100][i+1] = (1/(Re))*(3.0*zeta[100][i] - 4.0*zeta[99][i] + zeta[98][i]) + p[100][i-1]; // Right
     }
 
     p[99][100] = (1/(2.0*Re))*(3.0*zeta[99][100] - 4.0*zeta[99][99] + zeta[99][98]) + p[100][100];
-    for(int i = 1; i < 99; i++){
+    for(int i = 1; i < 100; i++){
         p[99-i][100] = (1/(Re))*(3.0*zeta[100-i][100] - 4.0*zeta[100-i][99] + zeta[100-i][98]) + p[101-i][100]; // Top
+    }
+
+    p[0][99] = (1/(2.0*Re))*(3.0*zeta[0][99] - 4.0*zeta[1][99] + zeta[2][99]) + p[0][100];
+    for(int i = 1; i < 99; i++){
+        p[0][99-i] = (1/(Re))*(3.0*zeta[0][100-i] - 4.0*zeta[1][100-i] + zeta[2][100-i]) + p[0][101-i]; // Left
     }
 
 
@@ -196,8 +196,8 @@ int main(){
         {
             for (int j = 1; j < 100; j++){
 
-                pt[i][j] = (0.25)*(p[i+1][j] + p[i-1][j] + p[i][j-1] + p[i][j+1] - 2*((((psi[i+1][j] - 2*psi[i][j] + psi[i-1][j])*(psi[i][j+1] - 2*psi[i][j] + psi[i][j-1]))/(d*d)) 
-                - ((psi[i+1][j+1] - psi[i+1][j-1] - psi[i-1][j+1] + psi[i-1][j-1])/(4.0*d))*((psi[i+1][j+1] - psi[i+1][j-1] - psi[i-1][j+1] + psi[i-1][j-1])/(4.0*d))));
+                pt[i][j] = (0.25)*(p[i+1][j] + p[i-1][j] + p[i][j-1] + p[i][j+1] - 2*((((psi[i+1][j] - 2*psi[i][j] + psi[i-1][j])*(psi[i][j+1] - 2*psi[i][j] + psi[i][j-1]))/(pow(d,2))) 
+                - pow(((psi[i+1][j+1] - psi[i+1][j-1] - psi[i-1][j+1] + psi[i-1][j-1])/(4.0*d)),2)));
             }
         }
 
@@ -211,8 +211,8 @@ int main(){
         ep = sqrt(ep);
 
         // Assign to Next step:
-        for (int i = 0;  i < 101; i++){
-            for (int j = 0; j < 101; j++){
+        for (int i = 1;  i < 100; i++){
+            for (int j = 1; j < 100; j++){
                 p[i][j] = pt[i][j];
             }
         }
