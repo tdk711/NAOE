@@ -1,3 +1,3 @@
 ## NAOE
-This is my repo for all Naval Architecture and Ocean Engineering course programs <br />
+This repo contains all the programs I've written as part of my coursework for my undergraduate degree in Naval Architecture <br/>
 
